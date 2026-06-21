@@ -2,34 +2,96 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [main, master, develop]
+    paths-ignore:
+      - "**.md"
+      - ".gitignore"
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - ".github/workflows/ci-cd.yml" # (Optional) Skip if just editing workflow comments
   pull_request:
-    branches: [ main, master, develop ]
+    branches: [main, master, develop]
+    paths-ignore:
+      - "**.md"
+      - ".gitignore"
+      - "Dockerfile"
+      - "docker-compose.yml"
+
+# Auto-cancel in-progress runs when new commits are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Restrict permissions for security compliance
+permissions:
+  contents: read
 
 jobs:
-  build-and-validate:
+  # Job 1: Lint check
+  lint:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: 'npm'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci --legacy-peer-deps
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
 
-    - name: Verify ESLint rules
-      run: npm run lint
+      - name: Verify ESLint rules
+        run: npm run lint
 
-    - name: Verify TypeScript compilation
-      run: npx tsc --noEmit
+  # Job 2: TypeScript compilation check
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Verify Production build
-      run: npm run build
-      env:
-        NEXT_PHASE: 1 # Disable environment validation crash during static compilation
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Verify TypeScript compilation
+        run: npx tsc --noEmit
+
+  # Job 3: Production Build (depends on Lint and Typecheck passing first)
+  build:
+    needs: [lint, typecheck]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # Cache .next/cache to speed up Next.js compilations
+      - name: Restore Next.js build cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+      - name: Verify Production build
+        run: npm run build
+        env:
+          NEXT_PHASE: 1 # Disable environment validation crash during static compilation

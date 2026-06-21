@@ -4,6 +4,25 @@ A production-grade, highly-scalable Next.js starter template designed for softwa
 
 ---
 
+## 🎯 Target Audience & Use Cases
+
+This starter is built for teams and individuals who need a robust foundation to deploy clean, modern, and secure web platforms:
+
+* **🏢 Software Agencies (Client Portals)**: Eliminate 30–40 hours of bootstrap setup for client projects. Enforce strict code formatting and design standards across multiple developers out-of-the-box.
+* **🚀 SaaS Startups & Indie Hackers**: Spin up your B2B dashboard, user preferences, and landing pages instantly. Since the backend layer is fully decoupled, you can integrate any API (Go, Python, NodeJS, or Rails) by simply pointing the `NEXT_PUBLIC_API_URL` environment variable to your server.
+* **🛠️ Enterprise Development Teams**: Establish secure internal tool boards. Features role-based guards, JWT refresh-token loop interceptors, and production-ready CI/CD configurations.
+
+## 🔧 How to Adapt the Template for Versatile Use
+
+To adapt this boilerplate for different projects, databases, and client requirements:
+
+1. **Swap Theme Colors (1 Minute)**: Mapped to CSS variables inside [app/globals.css](file:///c:/Users/naim%20dev/Desktop/naim_s_project/next_js_starter/app/globals.css). Simply edit `--primary`, `--secondary`, and `--accent` inside `:root` and `.dark` selectors to change the styling.
+2. **Switch Backend APIs & Services**: UI components never make direct REST requests. They consume service classes inside `lib/api/` (e.g. [authService](file:///c:/Users/naim%20dev/Desktop/naim_s_project/next_js_starter/lib/api/auth.service.ts)). To connect to GraphQL, Supabase, or Firebase, simply rewrite the service methods without touching any UI code.
+3. **Extend Auth Providers**: NextAuth configuration resides inside [lib/auth.ts](file:///c:/Users/naim%20dev/Desktop/naim_s_project/next_js_starter/lib/auth.ts). To enable social sign-ins (Google, GitHub, Facebook) or passwordless links, simply import and append the provider to the `providers` array.
+4. **Scale Global State**: Register new state slices under [store/store.ts](file:///c:/Users/naim%20dev/Desktop/naim_s_project/next_js_starter/store/store.ts) to extend custom features (e.g., billing, team sharing) cleanly without side effects.
+
+---
+
 ## 🚀 Tech Stack
 
 * **Framework**: Next.js 16 (App Router)
