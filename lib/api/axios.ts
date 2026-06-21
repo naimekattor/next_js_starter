@@ -105,7 +105,7 @@ apiClient.interceptors.response.use(
         
         // Force logout if refresh token validation fails
         if (typeof window !== 'undefined') {
-          signOut({ callbackUrl: '/auth/login' });
+          signOut({ callbackUrl: '/login' });
         }
         return Promise.reject(refreshError);
       } finally {

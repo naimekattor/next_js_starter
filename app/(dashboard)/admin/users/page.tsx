@@ -90,7 +90,7 @@ export default function AdminUsersPage() {
               placeholder="Search by name or email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 text-sm w-full rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 dark:focus:border-indigo-400 dark:focus:ring-indigo-400/25 transition-all"
+              className="pl-9 pr-4 py-2 text-sm w-full rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/25 transition-all"
             />
           </div>
         </CardHeader>
@@ -98,7 +98,7 @@ export default function AdminUsersPage() {
         <CardContent className="p-0">
           {isLoading ? (
             <div className="py-20 flex flex-col items-center justify-center space-y-3">
-              <div className="h-8 w-8 rounded-full border-4 border-indigo-500 border-t-transparent animate-spin"></div>
+              <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
               <div className="text-sm text-slate-400">Fetching directories...</div>
             </div>
           ) : filteredUsers.length === 0 ? (
@@ -148,7 +148,7 @@ export default function AdminUsersPage() {
                         <td className="p-4">
                           <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold ${
                             user.role === 'admin'
-                              ? 'bg-indigo-100 text-indigo-850 dark:bg-indigo-950/50 dark:text-indigo-400'
+                              ? 'bg-primary/10 text-primary dark:bg-primary/5 dark:text-primary'
                               : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                           }`}>
                             {user.role === 'admin' ? (

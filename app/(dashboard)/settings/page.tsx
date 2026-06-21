@@ -110,11 +110,11 @@ export default function SettingsPage() {
                 onClick={() => setActiveTab(tab.id as 'profile' | 'notifications' | 'security')}
                 className={`flex items-center gap-2.5 w-full px-3 py-2 text-sm font-semibold rounded-xl text-left transition-colors cursor-pointer ${
                   isSelected
-                    ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/40 dark:text-indigo-400'
+                    ? 'bg-primary/10 text-primary dark:bg-primary/5 dark:text-primary'
                     : 'text-slate-655 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-850'
                 }`}
               >
-                <Icon className={`h-4.5 w-4.5 ${isSelected ? 'text-indigo-650' : 'text-slate-400'}`} />
+                <Icon className={`h-4.5 w-4.5 ${isSelected ? 'text-primary' : 'text-slate-400'}`} />
                 {tab.name}
               </button>
             );
@@ -175,7 +175,7 @@ export default function SettingsPage() {
                       <p className="text-xs text-slate-500 dark:text-slate-400">{item.desc}</p>
                     </div>
                     {/* Simplified mock switch indicator */}
-                    <div className="h-6 w-11 rounded-full bg-indigo-600 dark:bg-indigo-500 p-0.5 flex items-center justify-end cursor-pointer">
+                    <div className="h-6 w-11 rounded-full bg-primary p-0.5 flex items-center justify-end cursor-pointer">
                       <div className="h-5 w-5 rounded-full bg-white shadow-sm"></div>
                     </div>
                   </div>
@@ -209,7 +209,7 @@ export default function SettingsPage() {
                       </>
                     ) : (
                       <>
-                        <Moon className="h-4 w-4 text-indigo-500" /> Dark Theme
+                        <Moon className="h-4 w-4 text-primary" /> Dark Theme
                       </>
                     )}
                   </Button>

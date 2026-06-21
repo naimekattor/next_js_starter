@@ -81,9 +81,8 @@ export default function ProfileDropdown() {
             </Link>
           )}
 
-          {/* Logout option */}
           <button
-            onClick={() => signOut({ callbackUrl: '/auth/login' })}
+            onClick={() => signOut({ callbackUrl: '/login' })}
             className="flex items-center gap-2.5 w-full px-3 py-2 text-sm rounded-xl text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 dark:text-rose-400 font-medium transition-colors border-t border-slate-100 dark:border-slate-800/80 mt-1.5 pt-2 cursor-pointer"
           >
             <LogOut className="h-4 w-4 text-rose-455" />

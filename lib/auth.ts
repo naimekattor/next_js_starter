@@ -1,6 +1,7 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { authService } from './api/auth.service';
+import { env } from '@/config/env';
 
 /**
  * NextAuth Configuration Options
@@ -62,13 +63,13 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: '/auth/login',
-    signOut: '/auth/login',
-    error: '/auth/login',
+    signIn: '/login',
+    signOut: '/login',
+    error: '/login',
   },
   session: {
     strategy: 'jwt',
     maxAge: 7 * 24 * 60 * 60, // 7 Days session lifetime
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
 };

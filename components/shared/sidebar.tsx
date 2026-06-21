@@ -67,7 +67,7 @@ export default function Sidebar() {
     >
       {/* Brand area */}
       <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-100 dark:border-slate-800/80">
-        <div className="h-8 w-8 rounded-lg bg-indigo-600 dark:bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
+        <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white flex-shrink-0">
           <ShieldCheck className="h-5 w-5" />
         </div>
         {sidebarOpen && (
@@ -90,14 +90,14 @@ export default function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 group cursor-pointer',
                 isActive
-                  ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/40 dark:text-indigo-400'
-                  : 'text-slate-600 dark:text-slate-450 hover:bg-slate-50 dark:hover:bg-slate-850 hover:text-slate-900 dark:hover:text-slate-100'
+                  ? 'bg-primary/10 text-primary dark:bg-primary/5 dark:text-primary'
+                  : 'text-slate-600 dark:text-slate-450 hover:bg-slate-50 dark:hover:bg-slate-850/50 hover:text-slate-900 dark:hover:text-slate-100'
               )}
             >
               <Icon
                 className={cn(
                   'h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-105',
-                  isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'
+                  isActive ? 'text-primary' : 'text-slate-400 dark:text-slate-500'
                 )}
               />
               {sidebarOpen && <span className="truncate">{item.name}</span>}

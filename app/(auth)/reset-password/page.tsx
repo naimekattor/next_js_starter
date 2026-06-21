@@ -58,7 +58,7 @@ function ResetPasswordForm() {
           description: 'Your password has been successfully updated. Please log in with your new credentials.',
         })
       );
-      router.push('/auth/login');
+      router.push('/login');
     } catch (err: unknown) {
       const errMsg = err instanceof Error ? err.message : (err as { message?: string })?.message || 'An error occurred during password update.';
       dispatch(
@@ -108,8 +108,8 @@ function ResetPasswordForm() {
         <div className="text-sm text-slate-500">
           Remembered it?{' '}
           <Link
-            href="/auth/login"
-            className="font-semibold text-indigo-650 hover:underline dark:text-indigo-400 cursor-pointer"
+            href="/login"
+            className="font-semibold text-primary hover:underline dark:text-primary cursor-pointer"
           >
             Back to Sign In
           </Link>
@@ -131,7 +131,7 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md">
         {/* Brand logo */}
         <div className="flex flex-col items-center mb-6">
-          <div className="h-12 w-12 rounded-2xl bg-indigo-650 flex items-center justify-center shadow-lg shadow-indigo-600/20 bg-indigo-650 dark:bg-indigo-600 text-white mb-2">
+          <div className="h-12 w-12 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 text-white mb-2">
             <Shield className="h-6 w-6" />
           </div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">

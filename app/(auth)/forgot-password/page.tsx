@@ -71,7 +71,7 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         {/* Brand logo */}
         <div className="flex flex-col items-center mb-6">
-          <div className="h-12 w-12 rounded-2xl bg-indigo-650 flex items-center justify-center shadow-lg shadow-indigo-600/20 bg-indigo-650 dark:bg-indigo-600 text-white mb-2">
+          <div className="h-12 w-12 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 text-white mb-2">
             <Shield className="h-6 w-6" />
           </div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -125,8 +125,8 @@ export default function ForgotPasswordPage() {
           </CardContent>
           <CardFooter className="justify-center border-t border-slate-105 dark:border-slate-800/50 mt-4">
             <Link
-              href="/auth/login"
-              className="inline-flex items-center text-sm font-semibold text-indigo-650 hover:underline dark:text-indigo-400 cursor-pointer"
+              href="/login"
+              className="inline-flex items-center text-sm font-semibold text-primary hover:underline dark:text-primary cursor-pointer"
             >
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Login
             </Link>

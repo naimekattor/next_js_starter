@@ -1,5 +1,7 @@
 import { withAuth, NextRequestWithAuth } from 'next-auth/middleware';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextFetchEvent } from 'next/server';
+
+const authPaths = ['/login', '/signup', '/forgot-password', '/reset-password'];
 
 /**
  * NextAuth Middleware handler instance
@@ -10,7 +12,7 @@ const authMiddleware = withAuth(
     const path = req.nextUrl.pathname;
 
     // 1. Redirect authenticated users away from public auth forms to the dashboard
-    if (path.startsWith('/auth/') && token) {
+    if (authPaths.includes(path) && token) {
       return NextResponse.redirect(new URL('/dashboard', req.url));
     }
 
@@ -27,7 +29,7 @@ const authMiddleware = withAuth(
         const path = req.nextUrl.pathname;
         
         // Let any anonymous user view public auth forms
-        if (path.startsWith('/auth/')) {
+        if (authPaths.includes(path)) {
           return true;
         }
         
@@ -41,7 +43,10 @@ const authMiddleware = withAuth(
 // Define match rules for route matching
 export const config = {
   matcher: [
-    '/auth/:path*',
+    '/login',
+    '/signup',
+    '/forgot-password',
+    '/reset-password',
     '/dashboard/:path*',
     '/profile/:path*',
     '/settings/:path*',
@@ -55,7 +60,7 @@ export const config = {
  * WHO SHOULD USE IT: Routing pipeline.
  * WHEN TO MODIFY: Adding new private path groups or changing authorization rules (RBAC rules).
  */
-export function proxy(request: Request, event: any) {
+export function proxy(request: Request, event: NextFetchEvent) {
   // Delegate the request execution to next-auth's middleware handler
   return authMiddleware(request as unknown as NextRequestWithAuth, event);
 }

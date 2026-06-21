@@ -28,7 +28,7 @@ const metrics: MetricCard[] = [
     change: '+12.3% vs last week',
     changeType: 'up',
     icon: Users,
-    color: 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200/20',
+    color: 'text-primary dark:text-primary bg-primary/10 dark:bg-primary/5 border border-primary/20',
   },
   {
     title: 'Active Sessions',
@@ -62,12 +62,12 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* Welcome Banner Panel */}
-      <div className="p-6 rounded-2xl border border-indigo-200/20 bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-950/40 dark:to-indigo-900/40 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl shadow-indigo-650/5">
+      <div className="p-6 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary to-accent/95 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl shadow-primary/10">
         <div className="space-y-1">
           <h2 className="text-xl md:text-2xl font-black tracking-tight flex items-center gap-2">
             Welcome back, {name}! <Sparkles className="h-5 w-5 text-amber-300 animate-pulse" />
           </h2>
-          <p className="text-xs md:text-sm text-indigo-100 dark:text-slate-350 opacity-90 max-w-xl">
+          <p className="text-xs md:text-sm text-slate-100 dark:text-slate-350 opacity-90 max-w-xl">
             This workspace represents a production-ready starter kit. Realize client features instantly by binding services to your backend.
           </p>
         </div>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
               ].map((log, idx) => (
                 <div key={idx} className="relative">
                   {/* Timeline bullet dot */}
-                  <span className="absolute -left-6.5 top-1.5 h-3 w-3 rounded-full bg-indigo-650 dark:bg-indigo-500 border-2 border-white dark:border-slate-950"></span>
+                  <span className="absolute -left-6.5 top-1.5 h-3 w-3 rounded-full bg-primary border-2 border-white dark:border-slate-950"></span>
                   <div className="space-y-0.5">
                     <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 flex items-center gap-1">
                       <Clock className="h-3 w-3" /> {log.time}
